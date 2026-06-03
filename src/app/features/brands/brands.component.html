@@ -1,0 +1,24 @@
+<section class="bg-gray-100 pb-16">
+  <div>
+    <div class="flex flex-wrap items-center justify-center">
+      <h2 class="text-3xl font-extrabold text-gray-800 text-center mt-10">
+        <span class="bg-linear-to-r from-green-500 to-green-700 bg-clip-text text-transparent">
+          Shop Popular Brands
+        </span>
+      </h2>
+    </div>
+
+    <div
+      class="mt-6 sm:mt-8 lg:mt-12 container xl:w-[95%] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+    >
+      @for (brand of brandsList(); track brand._id) {
+        <div>
+          <div>
+            <img class="w-full" [src]="brand.image" [alt]="brand.name" [title]="brand.name" />
+            <!-- <h3 class="text-sm text-green-600">{{ brand.name }}</h3> -->
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

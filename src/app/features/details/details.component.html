@@ -1,0 +1,45 @@
+<section class="pt-24">
+  <div class="container xl:w-[95%] mx-auto">
+
+    <div class="grid sm:grid-cols-12 gap-4 items-start">
+
+      <!-- الصورة -->
+      <div class="sm:col-span-3">
+        <div class="overflow-hidden h-64">
+          <img
+            class="w-full h-full object-cover"
+            [src]="productDetailsData().imageCover"
+            [alt]="productDetailsData().title"
+            [title]="productDetailsData().title"
+          />
+        </div>
+      </div>
+
+      <!-- تفاصيل المنتج -->
+      <div class="sm:col-span-9">
+        <h2 class="text-2xl font-semibold mb-2">
+          {{ productDetailsData().title }}
+        </h2>
+
+        <p class="text-sm text-gray-700 mt-2">
+          {{ productDetailsData().description }}
+        </p>
+
+        <h3 class="text-sm text-green-600 mt-2">
+          {{ productDetailsData().category.name }}
+        </h3>
+
+        <div class="flex items-center justify-between mt-4 mb-2">
+          <span class="font-semibold text-lg">
+            ${{ productDetailsData().price }}
+          </span>
+          <span class="flex items-center gap-1 text-yellow-500">
+            <i class="fas fa-star"></i>
+            {{ productDetailsData().ratingsAverage }}
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+<section>
+  <div class="pb-16 bg-gray-100">
+    <div class="flex flex-wrap items-center justify-center">
+      <h2 class="text-3xl font-extrabold text-gray-800 text-center mt-10">
+        <span class="bg-linear-to-r from-green-500 to-green-700 bg-clip-text text-transparent">
+          Shop Popular Categories
+        </span>
+      </h2>
+    </div>
+
+    <div class="mt-6">
+      <owl-carousel-o [options]="categoriescustomOptions">
+        @for (category of categorieslist(); track category._id) {
+          <ng-template carouselSlide="" [id]="category._id">
+            <div>
+              <div>
+                <img
+                  class="w-full h-75"
+                  [src]="category.image"
+                  [alt]="category.name"
+                  [title]="category.name"
+                />
+                <h3 class="text-sm text-green-600">{{ category.name }}</h3>
+              </div>
+            </div>
+          </ng-template>
+        }
+      </owl-carousel-o>
+    </div>
+  </div>
+</section>

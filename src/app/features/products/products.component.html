@@ -1,0 +1,27 @@
+<section class="py-16">
+  <div class="container xl:w-[95%]">
+    <div class="flex flex-wrap items-center justify-center">
+      <h2 class="text-3xl font-extrabold text-gray-800 text-center mt-10">
+        <span class="bg-linear-to-r from-green-500 to-green-700 bg-clip-text text-transparent">
+          Shop ALL Products
+        </span>
+      </h2>
+    </div>
+
+    <div class="my-6 w-1/2 mx-auto">
+      <input
+        type="search"
+        id="search"
+        class="main-input"
+        placeholder="Search by product tittle..."
+        [(ngModel)]="text"
+      />
+    </div>
+    <div class="parent mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      @for (product of productList() | paginate: pagination | search: text; track product.id) {
+        <app-card [cardProduct]="product"></app-card>
+      }
+    </div>
+    <pagination-controls id="products" (pageChange)="pageChanged($event)"> </pagination-controls>
+  </div>
+</section>

@@ -1,0 +1,16 @@
+<section class="pb-16">
+  <div class="container xl:w-[95%]">
+    <div class="flex flex-wrap items-center justify-center">
+      <h2 class="text-3xl font-extrabold text-gray-800 text-center mt-10">
+        <span class="bg-linear-to-r from-green-500 to-green-700 bg-clip-text text-transparent">
+          Shop Popular Products
+        </span>
+      </h2>
+    </div>
+    <div class="parent mt-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      @for (product of productList().slice(0, 10); track product.id) {
+        <app-card [cardProduct]="product"></app-card>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,46 @@
+<div
+  class="relative group/parent bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden group p-4 h-full"
+>
+  <div [routerLink]="['/details', cardProduct.slug, cardProduct._id]" class="cursor-pointer">
+    <div class="overflow-hidden">
+      <img
+        [src]="cardProduct.imageCover"
+        [alt]="cardProduct.title.split(' ', 2).join(' ')"
+        class="w-full h-48 object-cover group-hover:scale-110 transition duration-300"
+      />
+    </div>
+
+    <div class="p-4 mb-8">
+      <h3 class="text-xs text-green-600 font-semibold mb-1">
+        {{ cardProduct.category.name }}
+      </h3>
+
+      <h4 class="text-base font-medium line-clamp-2 mb-2">
+        {{ cardProduct.title.split(' ', 2).join(' ') }}
+      </h4>
+
+      <div class="flex items-center justify-between mb-3">
+        <span class="font-semibold text-gray-800"> {{ cardProduct.price }} EGP </span>
+
+        <span class="flex items-center gap-1 text-sm text-yellow-500">
+          <i class="fas fa-star"></i>
+          {{ cardProduct.ratingsAverage }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button
+      class="absolute bottom-0 left-0 right-0 w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer translate-y-[150%] group-hover/parent:translate-y-0.5"
+      (click)="addProductItemToCart(cardProduct._id)"
+    >
+      Add To Cart
+    </button>
+    <button
+      class="absolute bottom-10 left-0 right-0 w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer translate-y-[200%] group-hover/parent:translate-y-0"
+      (click)="addProductItemToWhishlist(cardProduct._id)"
+    >
+      Add To Whishlist
+    </button>
+  </div>
+</div>

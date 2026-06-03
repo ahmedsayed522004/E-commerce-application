@@ -1,0 +1,95 @@
+<section class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+  <div class="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold text-green-600">Login Now</h2>
+
+      <p class="text-gray-500 mt-2">Welcome back! Please login to your account</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
+      <div class="mb-5">
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-700">
+          Email Address
+        </label>
+
+        <input
+          formControlName="email"
+          type="email"
+          id="email"
+          class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+          placeholder="Enter your email"
+        />
+
+        @if (loginForm.get('email')?.touched && loginForm.get('email')?.errors) {
+          <div class="mt-2 text-red-600 text-sm">
+            @if (loginForm.get('email')?.getError('required')) {
+              <p>Email is required</p>
+            }
+
+            @if (loginForm.get('email')?.getError('email')) {
+              <p>Please enter a valid email</p>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="mb-5 relative">
+        <label for="password" class="block mb-2 text-sm font-medium text-gray-700">
+          Password
+        </label>
+
+        <input
+          formControlName="password"
+          [type]="flag ? 'password' : 'text'"
+          id="password"
+          class="w-full rounded-lg border border-gray-300 px-4 py-3 pe-12 focus:outline-none focus:ring-2 focus:ring-green-500"
+          placeholder="Enter your password"
+        />
+
+        <span class="absolute top-11 right-4 cursor-pointer text-gray-500" (click)="flag = !flag">
+          <i class="fas" [class.fa-eye]="flag" [class.fa-eye-slash]="!flag"> </i>
+        </span>
+
+        @if (loginForm.get('password')?.touched && loginForm.get('password')?.errors) {
+          <div class="mt-2 text-red-600 text-sm">
+            @if (loginForm.get('password')?.getError('required')) {
+              <p>Password is required</p>
+            }
+
+            @if (loginForm.get('password')?.getError('pattern')) {
+              <p>Minimum 8 characters, upper & lower case, number & special character</p>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="flex justify-end mb-5">
+        <a routerLink="/forget-password" class="text-sm text-green-600 hover:underline">
+          Forget Password?
+        </a>
+      </div>
+
+      @if (errorMessage()) {
+        <div class="mb-4 rounded-lg bg-red-100 px-4 py-3 text-red-700">
+          {{ errorMessage() }}
+        </div>
+      }
+
+      <button
+        [disabled]="isLoading()"
+        type="submit"
+        class="w-full rounded-lg cursor-pointer bg-green-600 py-3 text-white font-medium transition hover:bg-green-700 disabled:opacity-50"
+      >
+        @if (!isLoading()) {
+          Login
+        }
+
+        @if (isLoading()) {
+          <span>
+            <i class="fas fa-spinner animate-spin"></i>
+          </span>
+        }
+      </button>
+    </form>
+  </div>
+</section>

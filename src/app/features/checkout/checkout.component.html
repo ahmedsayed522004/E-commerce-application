@@ -1,0 +1,52 @@
+<section class="border border-gray-200 shadow-lg rounded-2xl bg-white md:w-1/2 mx-auto mt-16 p-6">
+  <div class="title mb-6">
+    <h2 class="text-3xl font-semibold text-green-600">Checkout</h2>
+    <p class="text-gray-500 text-sm mt-1">Complete your shipping information</p>
+  </div>
+
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmitCheckoutForm($event)">
+    <div formGroupName="shippingAddress">
+      <div class="mb-4">
+        <label for="details" class="main-label mb-2 block">Details</label>
+
+        <textarea
+          formControlName="details"
+          id="details"
+          rows="4"
+          class="main-input resize-none"
+        ></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="phone" class="main-label mb-2 block">Phone</label>
+
+        <input formControlName="phone" type="tel" id="phone" class="main-input" />
+      </div>
+
+      <div class="mb-6">
+        <label for="city" class="main-label mb-2 block">City</label>
+
+        <input formControlName="city" type="text" id="city" class="main-input" />
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4">
+        <button
+          id="visa"
+          type="submit"
+          class="flex-1 bg-green-500 hover:bg-green-600 transition-all duration-300 text-white font-medium py-3 rounded-xl cursor-pointer"
+        >
+          Payment With Visa
+        </button>
+
+        <button
+          id="cash"
+          type="submit"
+          class="flex-1 bg-gray-800 hover:bg-black transition-all duration-300 text-white font-medium py-3 rounded-xl cursor-pointer"
+        >
+          Cash On Delivery
+        </button>
+      </div>
+    </div>
+  </form>
+</section>

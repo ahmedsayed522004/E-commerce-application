@@ -1,0 +1,31 @@
+<section class="border border-gray-200 shadow-xs rounded bg-gray-200 md:w-1/2 mx-auto mt-16 p-4">
+  <h2 class="mb-3 text-green-600 font-medium">Reset Password</h2>
+
+  <form [formGroup]="resetCodeForm" (ngSubmit)="submitResetCodeForm()">
+    <div class="mb-3">
+      <label for="code" class="main-label"> Reset Code </label>
+
+      <input formControlName="code" type="text" id="code" class="main-input" />
+
+      @if (resetCodeForm.get('code')?.touched && resetCodeForm.get('code')?.errors) {
+        <div class="alert-error">
+          <ul class="list-disc list-inside text-red-600">
+            @if (resetCodeForm.get('code')?.getError('required')) {
+              <li>Reset code is required</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+
+    @if (errorMessage) {
+      <div class="flex px-3 py-2 mt-2 text-base text-red-800 rounded bg-red-100">
+        {{ errorMessage }}
+      </div>
+    }
+
+    <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded cursor-pointer">
+      Verify Code
+    </button>
+  </form>
+</section>

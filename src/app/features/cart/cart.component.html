@@ -1,0 +1,77 @@
+<section class="py-8 bg-gray-100 min-h-screen">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Cart -->
+      <div class="lg:col-span-8">
+        <!-- Header -->
+        <div class="mb-4">
+          <h2 class="text-xl font-semibold">Cart {{ cartDetailsData().products.length }} Items</h2>
+        </div>
+
+        <!-- Items -->
+        <div class="bg-white rounded-lg shadow p-4 space-y-4">
+          @for (item of cartDetailsData().products; track item.product._id) {
+            <div class="flex items-center justify-between border-b pb-4 last:border-none">
+              <!-- Left -->
+              <div class="flex items-center gap-4">
+                <img [src]="item.product.imageCover" class="w-16 h-16 object-cover rounded" />
+
+                <div>
+                  <h3 class="font-medium text-gray-800 text-sm">
+                    {{ item.product.title }}
+                  </h3>
+
+                  <!-- Quantity -->
+                  <div class="flex items-center gap-2 mt-2">
+                    <button
+                      (click)="updateProductCount(item.product._id, item.count - 1)"
+                      class="fas fa-minus cursor-pointer"
+                    ></button>
+
+                    <span class="px-2 text-sm">
+                      {{ item.count }}
+                    </span>
+
+                    <button
+                      (click)="updateProductCount(item.product._id, item.count + 1)"
+                      class="fas fa-plus cursor-pointer"
+                    ></button>
+
+                    <button
+                      (click)="removeProductItemFromCart(item.product._id)"
+                      class="fas fa-trash cursor-pointer"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Price -->
+              <div class="text-sm font-semibold">
+                {{ item.price * item.count | currency: 'GBP' }}
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="lg:col-span-4">
+        <div class="bg-white rounded-lg shadow p-5">
+          <h3 class="font-semibold mb-4">Order Summary</h3>
+
+          <div class="flex justify-between text-sm mb-4">
+            <span>Price</span>
+            <span>{{ cartDetailsData().totalCartPrice | currency: 'GBP' }}</span>
+          </div>
+
+          <button
+            [routerLink]="['/checkout', cartDetailsData()._id]"
+            class="w-full cursor-pointer bg-green-600 text-white py-2 rounded hover:bg-green-700"
+          >
+            Proceed to checkout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
