@@ -4,18 +4,14 @@ import { CanActivateFn, Router } from '@angular/router';
 import { stored_Keys } from '../constants/storedKeys';
 
 export const guestGuard: CanActivateFn = (route, state) => {
+  const router = inject(Router);
+  const plat_id = inject(PLATFORM_ID);
 
-
-   const router=inject(Router);
-  const plat_id=inject(PLATFORM_ID);
-
- if (isPlatformBrowser(plat_id)) {
+  if (isPlatformBrowser(plat_id)) {
     const token = localStorage.getItem(stored_Keys.userToken);
     if (!token) {
       return true;
-    }
-    else {
-
+    } else {
       return router.parseUrl('/home');
     }
   }

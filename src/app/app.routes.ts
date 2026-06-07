@@ -3,6 +3,7 @@ import { authGuard } from './core/guards/auth-guard';
 import { guestGuard } from './core/guards/guest-guard';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: '',
     loadComponent: () =>
@@ -52,7 +53,6 @@ export const routes: Routes = [
       import('./core/layouts/main-layout/main-layout.component').then((c) => c.MainLayoutComponent),
     canActivate: [authGuard],
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
         path: 'home',
         loadComponent: () => import('./features/home/home.component').then((c) => c.HomeComponent),
