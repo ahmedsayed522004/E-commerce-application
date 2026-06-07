@@ -7,17 +7,16 @@
       <a routerLink="/home" class="flex items-center gap-2 shrink-0 cursor-pointer">
         <img src="/assets/images/freshcart-logo.svg" class="h-10 w-auto" alt="logo" />
       </a>
-
       <!-- MOBILE BUTTON -->
       <button
         (click)="menuOpen.set(!menuOpen())"
-        class="md:hidden text-2xl text-gray-700 cursor-pointer"
+        class="xl:hidden text-2xl text-gray-700 cursor-pointer"
       >
         <i class="fas" [class.fa-bars]="!menuOpen()" [class.fa-xmark]="menuOpen()"></i>
       </button>
 
       <!-- DESKTOP NAV -->
-      <div class="hidden md:flex items-center w-full">
+      <div class="hidden xl:flex items-center w-full">
         @if (islogin === true) {
           <ul class="flex items-center gap-2 ms-8">
             <li>
@@ -72,7 +71,6 @@
           </ul>
         }
 
-        <!-- RIGHT SIDE -->
         <div class="flex items-center gap-5 ms-auto">
           <!-- SOCIAL -->
           <div class="flex items-center gap-3 text-gray-500">
@@ -82,7 +80,7 @@
             <i class="fab fa-youtube text-lg cursor-pointer hover:text-red-600 transition"></i>
           </div>
 
-          <!-- LANGUAGE DROPDOWN -->
+          <!-- LANGUAGE -->
           <div class="relative">
             <button
               (click)="toggleDropdown()"
@@ -111,7 +109,6 @@
             }
           </div>
 
-          <!-- AUTH -->
           @if (islogin === false) {
             <a
               routerLink="/login"
@@ -127,7 +124,6 @@
               Register
             </a>
           } @else {
-            <!-- CART -->
             <a
               routerLink="/cart"
               class="relative w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full cursor-pointer hover:bg-green-300 transition"
@@ -135,7 +131,6 @@
               <i class="fas fa-cart-shopping text-gray-700"></i>
             </a>
 
-            <!-- WISHLIST -->
             <a
               routerLink="/whishlist"
               class="relative w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full cursor-pointer hover:bg-red-50 transition"
@@ -143,7 +138,6 @@
               <i class="fa-regular fa-heart text-gray-700 hover:text-red-500"></i>
             </a>
 
-            <!-- CHANGE PASSWORD -->
             <a
               routerLink="/change-password"
               class="relative group w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full cursor-pointer hover:bg-blue-50 transition"
@@ -157,7 +151,6 @@
               </span>
             </a>
 
-            <!-- SIGNOUT -->
             <button
               (click)="singnOut()"
               class="px-4 py-2 text-gray-700 cursor-pointer hover:text-red-500 transition"
@@ -167,36 +160,36 @@
           }
         </div>
       </div>
+
+      <!-- MOBILE/TABLET MENU -->
+      @if (menuOpen()) {
+        <div class="xl:hidden mt-4 border-t pt-4 flex flex-col gap-4">
+          @if (islogin === true) {
+            <a routerLink="/home">Home</a>
+            <a routerLink="/products">Products</a>
+            <a routerLink="/categories">Categories</a>
+            <a routerLink="/brands">Brands</a>
+            <a routerLink="/allorders">All Orders</a>
+
+            <a routerLink="/cart">Cart</a>
+            <a routerLink="/whishlist">Wishlist</a>
+            <a routerLink="/change-password">Change Password</a>
+
+            <button (click)="singnOut()" class="text-red-500 text-left">Signout</button>
+          }
+
+          @if (islogin === false) {
+            <a routerLink="/login">Login</a>
+
+            <a
+              routerLink="/register"
+              class="bg-green-500 text-white px-4 py-2 rounded-xl text-center"
+            >
+              Register
+            </a>
+          }
+        </div>
+      }
     </div>
-
-    <!-- MOBILE MENU -->
-    @if (menuOpen()) {
-      <div class="md:hidden mt-4 border-t pt-4 flex flex-col gap-4">
-        @if (islogin === true) {
-          <a routerLink="/home">Home</a>
-          <a routerLink="/products">Products</a>
-          <a routerLink="/categories">Categories</a>
-          <a routerLink="/brands">Brands</a>
-          <a routerLink="/allorders">All Orders</a>
-
-          <a routerLink="/cart">Cart</a>
-          <a routerLink="/whishlist">Wishlist</a>
-          <a routerLink="/change-password">Change Password</a>
-
-          <button (click)="singnOut()" class="text-red-500 text-left">Signout</button>
-        }
-
-        @if (islogin === false) {
-          <a routerLink="/login">Login</a>
-
-          <a
-            routerLink="/register"
-            class="bg-green-500 text-white px-4 py-2 rounded-xl text-center"
-          >
-            Register
-          </a>
-        }
-      </div>
-    }
   </div>
 </nav>
